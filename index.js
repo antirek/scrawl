@@ -10,43 +10,45 @@ var capture_folder = 'capture/';
 
 casper.start();
 
-check(hosts.pop(), r);
+check(hosts.pop(), next);
 
 casper.run(function(){
-	log('ready');		
-	this.exit();
+	casper.echo('ready');
+	casper.exit();
 });
 
 
-function r(result){	
+
+function next(result){	
 	var host = hosts.pop();
 	if(host){
-		check(host, r);
+		check(host, next);
 	}
 }
 
 
+
 function check(host, callback){
 
-	var curhost = host;
+	var currentHost = host;
 
 	var capture = {
-		login: capture_folder + curhost + '_1_login.png',
-		auth_success: capture_folder + curhost + '_2_auth.png',
-		auth_failed: capture_folder + curhost + '_2_failed.png',
+		login: capture_folder + currentHost + '_1_login.png',
+		auth_success: capture_folder + currentHost + '_2_auth.png',
+		auth_failed: capture_folder + currentHost + '_2_failed.png',
 	}
 
 	var log = function(message){
-		casper.echo(curhost + ': ' + message);
+		casper.echo(currentHost + ': ' + message);
 	}
 
 	var result = false;
-	var url = 'http://' + curhost + '/';
+	var url = 'http://' + currentHost + '/';
 
 	casper.open(url);
-	
+
 	casper.then(function() {
-		var statusCode = this.status().currentHTTPStatus;
+		var statusCode = casper.status().currentHTTPStatus;
 	    log('status code: ' + statusCode);
 	    
 	    if(statusCode == 200){
@@ -57,39 +59,42 @@ function check(host, callback){
 
 	casper.then(function(){
 
-		this.capture(capture.login);
+		casper.capture(capture.login);
 
-		this.waitForSelector(
+		casper.waitForSelector(
 			'#name-pad',
 			function(){
 				log('open');				
-				this.fill('form', {
+				casper.fill('form', {
 					'P2': 'admin',
 					});
 				
-				this.click('input[name=Login]');
+				casper.click('input[name=Login]');
 			},
 			function(){
 				log('not open');
-				this.bypass(1);
+				casper.bypass(1);
 			},
 			3000
 		);
+
 	});
 
 	casper.then(function(){
-		this.waitForSelector(
+
+		casper.waitForSelector(
 			'#logo-pad',
 			function (){
 				result = true;
-				this.capture(capture.auth_success);
+				casper.capture(capture.auth_success);
 			},
 			function (){
 				result = false;
-				this.capture(capture.auth_failed);
+				casper.capture(capture.auth_failed);
 			},
 			3000
 		);
+
 	});
 
 	casper.then(function(){
