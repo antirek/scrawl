@@ -1,15 +1,28 @@
+var fs = require('fs');
 var casper = require('casper').create();
-var lineReader = require('line-reader');
-
-var host = '192.168.241.63';
 
 
-check(host);
+var input = fs.read('hosts.txt');
+var hosts = input.split('\n');
 
-function check(host){
+
+
+check(hosts.pop(), r);
+
+
+function r(result){
+	casper.echo(result)
+	var host = hosts.pop();
+	if(host){
+		check(host, r);
+	}
+}
+
+
+function check(host, callback){
 
 	var result = false;
-	var start = 'http://'+host+'/';
+	var start = 'http://' + host + '/';
 
 	casper.start(start, function() {
 	    this.echo(this.getTitle());
@@ -40,7 +53,10 @@ function check(host){
 		);
 	});
 
+	casper.then(function(){
+		callback(result);
+	})
+
 	casper.run();
 
-	return result;
 }
