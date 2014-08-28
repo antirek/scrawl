@@ -31,6 +31,7 @@ function next(result){
 function check(host, callback){
 
 	var currentHost = host;
+	var waitTimeout = 10000;
 
 	var capture = {
 		login: capture_folder + currentHost + '_1_login.png',
@@ -75,7 +76,7 @@ function check(host, callback){
 				log('not open');
 				casper.bypass(1);
 			},
-			3000
+			waitTimeout
 		);
 
 	});
@@ -92,7 +93,7 @@ function check(host, callback){
 				result = false;
 				casper.capture(capture.auth_failed);
 			},
-			3000
+			waitTimeout
 		);
 
 	});
