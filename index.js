@@ -31,10 +31,10 @@ function next(result){
 function check(host, callback){
 
 	var currentHost = host;
-	var waitTimeout = 10000;
+	var waitTimeout = 3000;
 
 	var capture = {
-		login: capture_folder + currentHost + '_1_login.png',
+		start: capture_folder + currentHost + '_1_start.png',
 		auth_success: capture_folder + currentHost + '_2_auth.png',
 		auth_failed: capture_folder + currentHost + '_2_failed.png',
 	}
@@ -56,11 +56,18 @@ function check(host, callback){
 	    	log(casper.getTitle());
 	    	log(casper.getCurrentUrl());
 	    }
+
+	    if(statusCode != null){
+	    	log('capture start')
+	    	casper.capture(capture.start);
+	    }
+	    
+	    if(statusCode == null){
+	    	casper.bypass(2);
+	    }
 	});
 
 	casper.then(function(){
-
-		casper.capture(capture.login);
 
 		casper.waitForSelector(
 			'#name-pad',
