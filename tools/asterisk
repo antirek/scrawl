@@ -1,0 +1,1 @@
+rasterisk -rx 'sip show peers' | awk '{print $2}' | grep -E "([0-9]{1,3}[\.]){3}[0-9]{1,3}"| sort | uniq
