@@ -5,7 +5,7 @@ var casper = require('casper').create();
 var input = fs.read('hosts.txt');
 var hosts = input.split('\n');
 var capture_folder = 'capture/';
-var output = capture_folder + 'output.html';
+var output = 'output.html';
 
 
 casper.start();
@@ -36,12 +36,19 @@ function check(host, callback){
 	}
 
 	var log = function(message){
-		casper.echo(currentHost + ': ' + message);
+		var date = new Date();
+		var day = [date.getFullYear(), date.getMonth(), date.getDate()];
+		var time = [date.getHours(), date.getMinutes(), date.getSeconds()];
+		casper.echo(day.join('-') + ' ' + time.join(':') + ' ' + currentHost + ': ' + message);
 	}
 
 	var hlop = function(res){
-		var str = res.statusCode;
-		fs.write(output, str, "W");
+		var head = '<a href="http://'+res.host+'/">'+res.host + '</a> ' + res.statusCode;
+
+		var img = '<img src='+res.capture_file+' width=300 height=10>';
+
+		var str = head + img +'<br/>';
+		fs.write(output, str, "W+");
 	}
 
 	var result = {};
@@ -53,6 +60,8 @@ function check(host, callback){
 
 		var statusCode = casper.status().currentHTTPStatus;
 	    log('status code: ' + statusCode);
+
+	    result.host = currentHost;
 	    result.statusCode = statusCode;
 	    
 	    if(statusCode == 200){
