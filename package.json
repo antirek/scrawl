@@ -1,25 +1,17 @@
 {
-  "name": "Scrawl",
+  "name": "scrawl",
   "version": "0.0.1",
   "private": true,
-  "dependencies": {
-    "express": "2.5.8",
-    "jade": ">= 0.0.1"
-  },
-  "description": "scrawl ======",
-  "main": "app.js",
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/antirek/scrawl.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/antirek/scrawl/issues"
-  },
-  "homepage": "https://github.com/antirek/scrawl"
+  "dependencies": {
+    "express": "~4.2.0",
+    "static-favicon": "~1.0.0",
+    "morgan": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "body-parser": "~1.0.0",
+    "debug": "~0.7.4",
+    "jade": "~1.3.0"
+  }
 }
