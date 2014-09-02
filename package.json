@@ -1,16 +1,9 @@
 {
-  "name": "admin-crawler",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "line-reader": "~0.2.4",
-    "string_decoder": "~0.10.31",
-    "buffer": "~2.5.0"
+    "name": "application-name"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "express": "2.5.8"
+    , "jade": ">= 0.0.1"
   }
 }
