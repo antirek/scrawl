@@ -43,11 +43,11 @@ function check(host, callback){
 	}
 
 	var hlop = function(res){
-		var head = '<a href="http://'+res.host+'/">'+res.host + '</a> ' + res.statusCode;
+		var head = '<a href="http://' + res.host + '/">' + res.host + '</a> ' + res.statusCode;
 
-		var img = '<img src='+res.capture_file+' width=300 height=10>';
+		var img = '<img src=' + res.capture_file + ' width=300 height=10>';
 
-		var str = head + img +'<br/>';
+		var str = head + img + '<br/>';
 		fs.write(output, str, "W+");
 	}
 
