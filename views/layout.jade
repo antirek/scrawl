@@ -3,5 +3,20 @@ html
   head
     title Scrawl
     
+    link(href='/components/bootstrap/dist/css/bootstrap.css',rel='stylesheet')
+    script(src='/components/jquery/dist/jquery.js')
+    
   body
-    block content
+    .container
+      .row
+        .col-md-12
+          h3 Scrawl
+
+      .row
+        .col-md-3
+          block menu
+            a.btn.btn-default(href='#') New
+
+        .col-md-9
+
+          block content
