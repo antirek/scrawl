@@ -36,10 +36,8 @@ function check(host, callback){
 	}
 
 	var log = function(message){
-		var date = new Date();
-		var day = [date.getFullYear(), date.getMonth(), date.getDate()];
-		var time = [date.getHours(), date.getMinutes(), date.getSeconds()];
-		casper.echo(day.join('-') + ' ' + time.join(':') + ' ' + currentHost + ': ' + message);
+		var date = new Date().toLocaleString();
+		casper.echo(date + ' ' + currentHost + ': ' + message);
 	}
 
 	var hlop = function(res){
