@@ -14,6 +14,11 @@ router.get('/add', function(req, res) {
 });
 
 
+router.get('/history', function(req, res) {
+	res.render('history', {});
+});
+
+
 router.post('/input', function(req, res){
 	//spookyManager.addURL('http://www.mail.ru/');
 	var urls = req.body.urls;
@@ -25,7 +30,7 @@ router.post('/input', function(req, res){
 
 	urls.forEach(function(url){
 		spookyManager.addURL(url);
-	})
+	});
 	
 	res.redirect('/')
 });
