@@ -37,11 +37,9 @@ var SpookyRunner = function() {
                     throw e;
                 }
                 
-                
                 spooky.start(url);
                 
                 spooky.then(function () {
-                //    this.start(url);
                     this.viewport(800, 600);
                     this.emit('console', 'Current URL ' + this.getCurrentUrl());
                     this.emit('console', 'Current Title ' + this.getTitle());
@@ -53,10 +51,7 @@ var SpookyRunner = function() {
                 });
 
                 spooky.run();
-                
             });
-
-
 
         spooky.on('error', function (e, stack) {
             running = false;
@@ -67,10 +62,6 @@ var SpookyRunner = function() {
             }
         });
 
-        
-        // Uncomment this block to see all of the things Casper has to say.
-        // There are a lot.
-        // He has opinions.
         spooky.on('console', function (line) {
             console.log(line);
         });
