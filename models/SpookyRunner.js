@@ -1,6 +1,28 @@
 var Spooky = require('spooky');
+var EventEmitter = require('events').EventEmitter;
 
 var SpookyRunner = function() {
+
+    var emitter = new EventEmitter();
+    var id = null;
+
+    var get_new_id = function (){
+        return Math.random();
+    }
+
+    id = get_new_id();
+
+    var getId = function(){
+        return id;
+    }
+
+    var emit = function(event, data){
+        emitter.emit(event, data);
+    }
+
+    var on = function(event, callback){
+        emitter.on(event, callback);
+    }
 
     var run = function(url){
 
@@ -24,9 +46,13 @@ var SpookyRunner = function() {
                 spooky.then(function () {
                     
                     this.viewport(800, 600);
-                    this.emit('hello', 'Current URL ' + this.getCurrentUrl());
-                    this.emit('hello', 'Current Title ' + this.getTitle());
-                    this.capture('capture/1.png');
+                    this.emit('console', 'Current URL ' + this.getCurrentUrl());
+                    this.emit('console', 'Current Title ' + this.getTitle());
+                    this.capture('capture/'+Math.random()+'.png');
+                });
+
+                spooky.then(function(){
+                    this.emit('end', 'ok');
                 });
 
                 spooky.run();
@@ -51,11 +77,10 @@ var SpookyRunner = function() {
         spooky.on('console', function (line) {
             console.log(line);
         });
-        
 
-        spooky.on('hello', function (greeting) {
-            console.log(greeting);
-        });
+        spooky.on('end', function(data){
+            emit('end', data)
+        });        
 
         spooky.on('log', function (log) {
             if (log.space === 'remote') {
@@ -65,7 +90,9 @@ var SpookyRunner = function() {
     }
 
     return {
-        run: run
+        run: run,
+        on: on,
+        getId: getId,      
     }
 }
 
