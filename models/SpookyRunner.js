@@ -4,18 +4,12 @@ var EventEmitter = require('events').EventEmitter;
 var SpookyRunner = function() {
 
     var emitter = new EventEmitter();
-    var id = null;
+    var running = false;
 
-    var get_new_id = function (){
-        return Math.random();
+    var isBusy = function(){
+        return running;
     }
-
-    id = get_new_id();
-
-    var getId = function(){
-        return id;
-    }
-
+    
     var emit = function(event, data){
         emitter.emit(event, data);
     }
@@ -25,6 +19,8 @@ var SpookyRunner = function() {
     }
 
     var run = function(url){
+
+        running = true;
 
         var spooky = new Spooky({
                 child: {
@@ -41,14 +37,15 @@ var SpookyRunner = function() {
                     throw e;
                 }
                 
+                
                 spooky.start(url);
-
+                
                 spooky.then(function () {
-                    
+                //    this.start(url);
                     this.viewport(800, 600);
                     this.emit('console', 'Current URL ' + this.getCurrentUrl());
                     this.emit('console', 'Current Title ' + this.getTitle());
-                    this.capture('capture/'+Math.random()+'.png');
+                    this.capture('capture/' + Math.random() + '.png');
                 });
 
                 spooky.then(function(){
@@ -56,13 +53,13 @@ var SpookyRunner = function() {
                 });
 
                 spooky.run();
-            
+                
             });
 
 
 
         spooky.on('error', function (e, stack) {
-            
+            running = false;
             console.error(e);
 
             if (stack) {
@@ -79,6 +76,7 @@ var SpookyRunner = function() {
         });
 
         spooky.on('end', function(data){
+            running = false;
             emit('end', data)
         });        
 
@@ -92,7 +90,7 @@ var SpookyRunner = function() {
     return {
         run: run,
         on: on,
-        getId: getId,      
+        isBusy: isBusy,    
     }
 }
 

@@ -6,7 +6,11 @@ var spookyManager = require('../models/SpookyManager')();
 router.get('/', function(req, res) {
 
   //var spooky = new spooky();
-  spookyManager.add('http://www.mail.ru/');  
+  spookyManager.addURL('http://www.mail.ru/');
+  spookyManager.addURL('http://www.yandex.ru/');
+  spookyManager.addURL('http://www.google.com/');
+  spookyManager.addURL('http://www.news2.ru/');
+  
   res.render('index', { title: 'Express' });
 });
 
