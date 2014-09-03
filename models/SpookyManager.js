@@ -19,12 +19,22 @@ var SpookyManager = function(){
 		}
 	}
 
+	var isBusy = function(){
+		return runner.isBusy();
+	}
+
+	var queueLength = function(){
+		return queue.length;
+	}
+
 	runner.on('end', function(){
 		tryStart();
 	});
 
 	return {
 		addURL: addURL,
+		isBusy: isBusy,
+		queueLength: queueLength
 	}
 }
 

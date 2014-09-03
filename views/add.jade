@@ -1,0 +1,16 @@
+extends layout
+
+block content
+
+  h3 Add URLs
+
+  form.form-horizontal(method='post', action='/input')
+    .form-group
+      textarea.form-control(rows="3", name='urls')
+        | http://www.mail.ru
+        | http://www.google.com
+   
+    .form-group
+      button.btn.btn-default(type="submit") Submit
+    
+  

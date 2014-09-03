@@ -2,21 +2,27 @@ doctype html
 html
   head
     title Scrawl
-    
+
     link(href='/components/bootstrap/dist/css/bootstrap.css',rel='stylesheet')
     script(src='/components/jquery/dist/jquery.js')
-    
+
   body
     .container
       .row
         .col-md-12
           h3 Scrawl
-
+      
       .row
-        .col-md-3
-          block menu
-            a.btn.btn-default(href='#') New
+        .col-md-12
+          ul.nav.nav-pills
+            li
+              a(href='/') Status
+            li 
+              a(href='/add') Add URLs
+            li 
+              a(href='/history') History
 
-        .col-md-9
 
+      .row       
+        .col-md-12
           block content

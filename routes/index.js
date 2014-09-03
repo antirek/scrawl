@@ -2,16 +2,32 @@ var express = require('express');
 var router = express.Router();
 var spookyManager = require('../models/SpookyManager')();
 
-/* GET home page. */
 router.get('/', function(req, res) {
+	res.render('status', {
+		status: spookyManager.isBusy(),
+		length: spookyManager.queueLength(),
+	});
+});
 
-  //var spooky = new spooky();
-  spookyManager.addURL('http://www.mail.ru/');
-  spookyManager.addURL('http://www.yandex.ru/');
-  spookyManager.addURL('http://www.google.com/');
-  spookyManager.addURL('http://www.news2.ru/');
-  
-  res.render('index', { title: 'Express' });
+router.get('/add', function(req, res) {
+	res.render('add', {});
+});
+
+
+router.post('/input', function(req, res){
+	//spookyManager.addURL('http://www.mail.ru/');
+	var urls = req.body.urls;
+	console.log(urls);
+	urls = urls.split('\r\n');
+	urls = urls.map(function(url){
+		return url.trim();
+	});
+
+	urls.forEach(function(url){
+		spookyManager.addURL(url);
+	})
+	
+	res.redirect('/')
 });
 
 module.exports = router;
