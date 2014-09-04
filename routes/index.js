@@ -3,6 +3,7 @@ var router = express.Router();
 var spookyManager = require('../models/SpookyManager')();
 var db = require('diskdb');
 db.connect('capture/db/', ['urls']);
+var S = require('string');
 
 router.get('/', function(req, res) {
 	res.render('status', {
@@ -17,7 +18,11 @@ router.get('/add', function(req, res) {
 
 
 router.get('/history', function(req, res) {
-	var urls = db.urls.find();	
+	var urls = db.urls.find();
+	urls.map(function(url){
+		url.title = S(url.title).left(20);
+		console.log(url);
+	});
 	res.render('history', {urls: urls.reverse()});
 });
 

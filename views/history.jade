@@ -8,15 +8,17 @@ block content
     thead
       th Date
       th Status
+      th Url
       th Title
       th Screen
     tbody
     each item in urls
       tr
         td= item.date
-        td= item.statusCode       
+        td= item.statusCode 
+        td= item.url      
         td
-          a(href= item.url)
+          a(href= item.currentUrl)
             = item.title
         td
           a(href='images/#{item.filename}') View
