@@ -1,7 +1,7 @@
 var Spooky = require('spooky');
 var EventEmitter = require('events').EventEmitter;
 var md5 = require('MD5');
-
+var capture_images_folder = 'capture/images/';
 
 var SpookyRunner = function() {
 
@@ -55,8 +55,7 @@ var SpookyRunner = function() {
                         filename1 : filename
                     },function () {
 
-                    var statusCode = this.status().currentHTTPStatus;
-                    console.log('status code: ' + statusCode);
+                    var statusCode = this.status().currentHTTPStatus;                   
                     this.emit('data','statusCode:' + statusCode);                 
 
                     if(statusCode != null) {
@@ -97,9 +96,7 @@ var SpookyRunner = function() {
             var value = (q[0]) ? q.join(':') : false;
             if(key && value){
                 result[key] = value;
-            }
-            
-            console.log(result);
+            }            
         });
 
         spooky.on('end', function(status){

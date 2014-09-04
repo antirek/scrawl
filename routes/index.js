@@ -1,9 +1,16 @@
 var express = require('express');
 var router = express.Router();
-var spookyManager = require('../models/SpookyManager')();
 var db = require('diskdb');
-db.connect('capture/db/', ['urls']);
 var S = require('string');
+var fs = require('fs');
+
+
+var spookyManager = require('../models/SpookyManager')();
+var DB = db.connect('capture/db/', ['urls']);
+var capture_images_folder = 'capture/images/';
+
+spookyManager.setDB(DB);
+
 
 router.get('/', function(req, res) {
 	res.render('status', {
@@ -12,14 +19,15 @@ router.get('/', function(req, res) {
 	});
 });
 
+
 router.get('/add', function(req, res) {
 	res.render('add', {});
 });
 
 
 router.get('/history', function(req, res) {
-	if(db.urls){
-		var urls = db.urls.find();
+	if(DB.urls){
+		var urls = DB.urls.find();
 		urls.map(function(url){
 			if(url.title){
 				url.title = S(url.title).left(20);
@@ -32,10 +40,27 @@ router.get('/history', function(req, res) {
 	res.render('history', {urls: urls});
 });
 
+
 router.get('/history/clear', function(req, res) {
-	if(db.urls){
-		db.urls.remove();
+	if(DB.urls){
+		DB.urls.remove();
+		DB = db.connect('capture/db/', ['urls']);
+		spookyManager.setDB(DB);
 	}
+
+	fs.readdir(capture_images_folder, function(err, files){
+		if(err){
+			console.log(err)
+		}else{
+			for(var i = 0; i < files.length; i++){
+				fs.unlink(capture_images_folder + files[i], function(err){
+					if(err) console.log(err)
+				});
+			}
+		}
+
+	});
+
 	res.redirect('/history');
 });
 
@@ -43,7 +68,7 @@ router.get('/history/clear', function(req, res) {
 router.get('/images/:filename', function(req, res){
 	var filename = req.params.filename;
 	console.log(filename);
-	res.sendfile('capture/images/' + filename);
+	res.sendfile(capture_images_folder + filename);
 });
 
 
