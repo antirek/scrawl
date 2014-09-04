@@ -4,7 +4,9 @@ block content
 
   h3 History
 
-  table.table.table-striped.table-hover.table-condensed.table-bordered
+  a.btn.btn-default(href='/history/clear') Clear
+
+  table.table.table-hover.table-condensed.table-bordered
     thead
       th Date
       th Status
@@ -12,31 +14,30 @@ block content
       th Title
       th Screen
     tbody
-    each item in urls
-      if item.statusCode == 'null'
-        tr
+    if urls
+      each item in urls
+        if item.statusCode == 'null'
+          tr
 
-          td= item.date
-          td= item.statusCode 
-          td
-            a(href= item.url)
-              = item.url
-          td
-            a(href= item.currentUrl)
-              = item.title
-          td
-            a(href='images/#{item.filename}') View
-      else
-        tr.success
+            td= item.date
+            td= item.statusCode 
+            td
+              a(href= item.url)
+                = item.url
+            td
+            td
+              
+        else
+          tr.success
 
-          td= item.date
-          td= item.statusCode 
-          td
-            a(href= item.url)
-              = item.url
-          td
-            a(href= item.currentUrl)
-              = item.title
-          td
-            a(href='images/#{item.filename}') View
+            td= item.date
+            td= item.statusCode 
+            td
+              a(href= item.url)
+                = item.url
+            td
+              a(href= item.currentUrl)
+                = item.title
+            td
+              a(href='images/#{item.filename}') View
 

@@ -18,14 +18,25 @@ router.get('/add', function(req, res) {
 
 
 router.get('/history', function(req, res) {
-	var urls = db.urls.find();
-	urls.map(function(url){
-		if(url.title){
-			url.title = S(url.title).left(20);
-		}
-		console.log(url);
-	});
-	res.render('history', {urls: urls.reverse()});
+	if(db.urls){
+		var urls = db.urls.find();
+		urls.map(function(url){
+			if(url.title){
+				url.title = S(url.title).left(20);
+			}
+			console.log(url);
+		});
+		urls = urls.reverse();
+	}
+
+	res.render('history', {urls: urls});
+});
+
+router.get('/history/clear', function(req, res) {
+	if(db.urls){
+		db.urls.remove();
+	}
+	res.redirect('/history');
 });
 
 
