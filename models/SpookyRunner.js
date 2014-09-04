@@ -44,13 +44,10 @@ var SpookyRunner = function() {
                 }
                 
                 spooky.start();
-
                 spooky.open(url);
 
                 var filename = md5(new Date()) + '.png';
 
-                
-                
                 spooky.then([{
                         filename1 : filename
                     },function () {

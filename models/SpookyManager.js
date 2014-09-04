@@ -34,9 +34,7 @@ var SpookyManager = function(){
 		return queue.length;
 	}
 
-	runner.on('end', function(data){
-		console.log('data');
-		console.log(data.result);
+	runner.on('end', function(data){		
 		if(DB.urls) DB.urls.save(data.result);
 		tryStart();		
 	});

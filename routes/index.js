@@ -32,7 +32,6 @@ router.get('/history', function(req, res) {
 			if(url.title){
 				url.title = S(url.title).left(20);
 			}
-			console.log(url);
 		});
 		urls = urls.reverse();
 	}
@@ -58,7 +57,6 @@ router.get('/history/clear', function(req, res) {
 				});
 			}
 		}
-
 	});
 
 	res.redirect('/history');
@@ -67,15 +65,12 @@ router.get('/history/clear', function(req, res) {
 
 router.get('/images/:filename', function(req, res){
 	var filename = req.params.filename;
-	console.log(filename);
 	res.sendfile(capture_images_folder + filename);
 });
 
 
 router.post('/input', function(req, res){
-	//spookyManager.addURL('http://www.mail.ru/');
 	var urls = req.body.urls;
-	console.log(urls);
 	urls = urls.split('\r\n');
 	urls = urls.map(function(url){
 		return url.trim();
@@ -84,8 +79,9 @@ router.post('/input', function(req, res){
 	urls.forEach(function(url){
 		spookyManager.addURL(url);
 	});
-	
+
 	res.redirect('/')
 });
+
 
 module.exports = router;
