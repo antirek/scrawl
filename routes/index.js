@@ -17,14 +17,15 @@ router.get('/add', function(req, res) {
 
 
 router.get('/history', function(req, res) {
-	
-	db.urls.save({ 
-		title: 'hello', 
-		url: 'http://www.mail.ru/',
-		date: new Date(),
-		file: '1',
-	});
-	res.render('history', {});
+	var urls = db.urls.find();	
+	res.render('history', {urls: urls.reverse()});
+});
+
+
+router.get('/images/:filename', function(req, res){
+	var filename = req.params.filename;
+	console.log(filename);
+	res.sendfile('capture/images/' + filename);
 });
 
 

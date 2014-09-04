@@ -3,3 +3,21 @@ extends layout
 block content
 
   h3 History
+
+  table.table.table-striped.table-hover.table-condensed.table-bordered
+    thead
+      th Date
+      th Status
+      th Title
+      th Screen
+    tbody
+    each item in urls
+      tr
+        td= item.date
+        td= item.statusCode       
+        td
+          a(href= item.url)
+            = item.title
+        td
+          a(href='images/#{item.filename}') View
+

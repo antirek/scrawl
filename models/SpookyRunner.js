@@ -1,5 +1,6 @@
 var Spooky = require('spooky');
 var EventEmitter = require('events').EventEmitter;
+var md5 = require('MD5');
 
 
 var SpookyRunner = function() {
@@ -42,16 +43,32 @@ var SpookyRunner = function() {
                     throw e;
                 }
                 
-                spooky.start(url);
+                spooky.start();
+
+                spooky.open(url);
+
+                var filename = md5(new Date()) + '.png';
+
                 
-                spooky.then(function () {
-                    this.viewport(800, 600);
-                    this.emit('data', 'current_url:' + this.getCurrentUrl());
-                    this.emit('data', 'title:' + this.getTitle());
-                    var filename = 'capture/images/' + Math.random() + '.png';
-                    this.capture(filename);
-                    this.emit('data', 'filename:' + filename);
-                });
+                
+                spooky.then([{
+                        filename1 : filename
+                    },function () {
+
+                    var statusCode = this.status().currentHTTPStatus;
+                    console.log('status code: ' + statusCode);
+                    this.emit('data','statusCode:' + statusCode);                 
+
+                    if(statusCode != null) {
+                        this.emit('data', 'currentUrl:' + this.getCurrentUrl());
+                        this.emit('data', 'title:' + this.getTitle());
+                        this.viewport(800, 600);
+                        
+                        this.capture('capture/images/' + filename1);
+                        this.emit('data', 'filename:' + filename1);                 
+                    }
+
+                }]);
 
                 spooky.then(function(){
                     this.emit('end', 'ok');
@@ -88,6 +105,7 @@ var SpookyRunner = function() {
         spooky.on('end', function(status){
             running = false;
             var m = {};
+            result.date = new Date();
             m.status = status;
             m.result = result;
             emit('end', m)
