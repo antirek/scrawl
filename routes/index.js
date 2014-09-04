@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var spookyManager = require('../models/SpookyManager')();
+var db = require('diskdb');
+db.connect('capture/db/', ['urls']);
 
 router.get('/', function(req, res) {
 	res.render('status', {
@@ -15,6 +17,13 @@ router.get('/add', function(req, res) {
 
 
 router.get('/history', function(req, res) {
+	
+	db.urls.save({ 
+		title: 'hello', 
+		url: 'http://www.mail.ru/',
+		date: new Date(),
+		file: '1',
+	});
 	res.render('history', {});
 });
 

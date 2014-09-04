@@ -1,4 +1,6 @@
 var spookyRunner = require('./SpookyRunner');
+var db = require('diskdb');
+db.connect('capture/db/', ['urls']);
 
 var SpookyManager = function(){
 
@@ -27,8 +29,17 @@ var SpookyManager = function(){
 		return queue.length;
 	}
 
-	runner.on('end', function(){
-		tryStart();
+	var qr = function(d){
+		var saved = db.urls.save(d);
+		console.log(saved);
+	}
+
+	runner.on('end', function(data){
+		console.log('data');
+		console.log(data.result);
+		var saved = db.urls.save(data.result);
+		console.log(saved);
+		tryStart();		
 	});
 
 	return {
