@@ -4,13 +4,15 @@ block content
 
   h3 Add URLs
 
-  form.form-horizontal(method='post', action='/input')
+  form#formAddUrls.form-horizontal(method='post', action='/input')
     .form-group
-      textarea.form-control(rows="3", name='urls')
-        | http://www.mail.ru
+      textarea#urls.form-control(rows="8", name='urls')
+        | http://www.news2.ru
         | http://www.google.com
    
     .form-group
-      button.btn.btn-default(type="submit") Submit
+      a#validate.btn.btn-default Validate
+      &nbsp;
+      a#submit.btn.btn-primary Submit
     
-  
+  script(src='/js/add.js')

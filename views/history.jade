@@ -13,13 +13,30 @@ block content
       th Screen
     tbody
     each item in urls
-      tr
-        td= item.date
-        td= item.statusCode 
-        td= item.url      
-        td
-          a(href= item.currentUrl)
-            = item.title
-        td
-          a(href='images/#{item.filename}') View
+      if item.statusCode == 'null'
+        tr
+
+          td= item.date
+          td= item.statusCode 
+          td
+            a(href= item.url)
+              = item.url
+          td
+            a(href= item.currentUrl)
+              = item.title
+          td
+            a(href='images/#{item.filename}') View
+      else
+        tr.success
+
+          td= item.date
+          td= item.statusCode 
+          td
+            a(href= item.url)
+              = item.url
+          td
+            a(href= item.currentUrl)
+              = item.title
+          td
+            a(href='images/#{item.filename}') View
 

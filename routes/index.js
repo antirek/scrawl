@@ -20,7 +20,9 @@ router.get('/add', function(req, res) {
 router.get('/history', function(req, res) {
 	var urls = db.urls.find();
 	urls.map(function(url){
-		url.title = S(url.title).left(20);
+		if(url.title){
+			url.title = S(url.title).left(20);
+		}
 		console.log(url);
 	});
 	res.render('history', {urls: urls.reverse()});
