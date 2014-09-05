@@ -1,5 +1,9 @@
 extends layout
 
+block scripts
+  script(src='/components/lightbox/js/lightbox.js')
+  link(href='/components/lightbox/css/lightbox.css', rel='stylesheet')
+
 block content
 
   h3 History
@@ -13,6 +17,7 @@ block content
       th Url
       th Title
       th Screen
+
     tbody
     if urls
       each item in urls
@@ -37,7 +42,8 @@ block content
                 = item.url
             td
               a(href= item.currentUrl)
-                = item.title
+                = item.short_title
             td
-              a(href='images/#{item.filename}') View
+              a(href='images/#{item.filename}',data-lightbox="1",data-title="#{item.title}") View
+
 

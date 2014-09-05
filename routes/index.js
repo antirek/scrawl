@@ -30,7 +30,7 @@ router.get('/history', function(req, res) {
 		var urls = DB.urls.find();
 		urls.map(function(url){
 			if(url.title){
-				url.title = S(url.title).left(20);
+				url.short_title = S(url.title).left(20);
 			}
 		});
 		urls = urls.reverse();

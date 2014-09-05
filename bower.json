@@ -1,0 +1,19 @@
+{
+  "name": "scrawl",
+  "version": "0.0.2",
+  "homepage": "https://github.com/antirek/scrawl",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "lightbox": "~2.7.1"
+  }
+}
