@@ -26,5 +26,28 @@ Install
     bower install
     npm start
 
+config/scrawl.json
+------------------
 
+`````
+{
+  "capture": {
+       //image path
+    "images": "capture/images/",  
+       //json-db path
+    "db": "capture/db/"            
+  },
+  "casper": {
+       //user-agent of phantomjs browser
+  	"userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.94 Safari/537.36"                     
+  },
+    //viewport width & height of phantomjs browser
+  "viewport": {
+  	"width": 1200,                 
+  	"height": 600
+  },
+    //capture page with viewport width & height or whole page
+  "captureAsViewport": true        
+}
+`````
 
