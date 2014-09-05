@@ -7,7 +7,10 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="lightbox2/css/lightbox.css">
     <script src="javascripts/scale.fix.js"></script>
+    <script src="lightbox2/js/jquery-1.11.0.min.js"></script>
+    <script src="lightbox2/js/lightbox.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -17,7 +20,7 @@
     <div class="wrapper">
       <header>
         <h1 class="header">Scrawl</h1>
-        <p class="header">Screenshot crawler</p>
+        <p class="header">web capture crawler</p>
 
         <ul>          
           <li><a class="buttons github" href="https://github.com/antirek/scrawl">View On GitHub</a></li>
@@ -29,12 +32,82 @@
       </header>
       <section>
         <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"></a>Scrawl - screenshot crawler</h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"></a>Scrawl - web capture crawler</h3>
+
+        <p>
+          Simple way for crawling list of URLs.
+        </p>
+
+        <h3>How to use?</h3>
+        <ul>
+          <li>
+            Load list of URLs to Scrawl
+          </li>
+          <li>
+            Wait some time
+          </li>
+          <li>
+            Get tons of screenshots!
+          </li>
+        </ul>
+
+        <h3>More details</h3>
+        <a href='images/1.png' data-lightbox="image-1" data-title="Load URLs">
+          <img src="images/1.png" width=200>
+        </a>
+        <a href='images/2.png' data-lightbox="image-1" data-title="Wait">
+          <img src="images/2.png" width=200>
+        </a>
+        <a href='images/3.png' data-lightbox="image-1" data-title="List of results">
+          <img src="images/3.png" width=200>
+        </a>
+        <a href='images/4.png' data-lightbox="image-1" data-title="Screenshot!">
+          <img src="images/4.png" width=200>
+        </a>
+
+        <h3>How to install?</h3>
+        <a href='http://www.github.com/antirek/scrawl'>View on Github</a>
 
 
       </section>
       <footer>
-        <p><small></small></p>
+        <p><small>
+          <!-- Yandex.Metrika informer -->
+          <a href="https://metrika.yandex.ru/stat/?id=26087349&amp;from=informer"
+          target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/26087349/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+          style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer({i:this,id:26087349,lang:'ru'});return false}catch(e){}"/></a>
+          <!-- /Yandex.Metrika informer -->
+
+          <!-- Yandex.Metrika counter -->
+          <script type="text/javascript">
+          (function (d, w, c) {
+              (w[c] = w[c] || []).push(function() {
+                  try {
+                      w.yaCounter26087349 = new Ya.Metrika({id:26087349,
+                              clickmap:true,
+                              trackLinks:true,
+                              accurateTrackBounce:true});
+                  } catch(e) { }
+              });
+
+              var n = d.getElementsByTagName("script")[0],
+                  s = d.createElement("script"),
+                  f = function () { n.parentNode.insertBefore(s, n); };
+              s.type = "text/javascript";
+              s.async = true;
+              s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+              if (w.opera == "[object Opera]") {
+                  d.addEventListener("DOMContentLoaded", f, false);
+              } else { f(); }
+          })(document, window, "yandex_metrika_callbacks");
+          </script>
+          <noscript><div><img src="//mc.yandex.ru/watch/26087349" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+          <!-- /Yandex.Metrika counter -->
+
+          
+
+        </small></p>
       </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
