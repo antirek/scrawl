@@ -1,7 +1,15 @@
 var Spooky = require('spooky');
 var EventEmitter = require('events').EventEmitter;
 var md5 = require('MD5');
-var capture_images_folder = 'capture/images/';
+var nconf = require('nconf');
+nconf.file({file: 'config/scrawl.json'});
+
+
+var captureImageFolder = nconf.get('capture:images');
+var casperUserAgent = nconf.get('casper:userAgent');
+var viewport = nconf.get('viewport');
+var captureAsViewport = nconf.get('captureAsViewport');
+
 
 var SpookyRunner = function() {
 
@@ -33,7 +41,10 @@ var SpookyRunner = function() {
                 },
                 casper: {
                     logLevel: 'debug',
-                    verbose: true
+                    verbose: true,
+                    pageSettings: {                        
+                        userAgent: casperUserAgent
+                    }
                 }
             }, function (err) {
                 //console.log(result);
@@ -49,7 +60,10 @@ var SpookyRunner = function() {
                 var filename = md5(new Date()) + '.png';
 
                 spooky.then([{
-                        filename1 : filename
+                        filename: filename,
+                        captureImageFolder: captureImageFolder,
+                        viewport: viewport,
+                        captureAsViewport: captureAsViewport
                     },function () {
 
                     var statusCode = this.status().currentHTTPStatus;                   
@@ -58,10 +72,17 @@ var SpookyRunner = function() {
                     if(statusCode != null) {
                         this.emit('data', 'currentUrl:' + this.getCurrentUrl());
                         this.emit('data', 'title:' + this.getTitle());
-                        this.viewport(800, 600);
+
+                        this.viewport(viewport.width, viewport.height);
                         
-                        this.capture('capture/images/' + filename1);
-                        this.emit('data', 'filename:' + filename1);                 
+                        if(captureAsViewport){
+                            this.capture(captureImageFolder + filename,
+                                {top:0, left:0, width: viewport.width, height: viewport.height});
+                        }else{
+                            this.capture(captureImageFolder + filename);
+                        }
+
+                        this.emit('data', 'filename:' + filename);
                     }
 
                 }]);
