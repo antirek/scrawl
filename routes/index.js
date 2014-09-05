@@ -74,7 +74,7 @@ router.get('/images/:filename', function(req, res){
 });
 
 
-router.post('/input', function(req, res){
+router.post('/add', function(req, res){
 	var urls = req.body.urls;
 	urls = urls.split('\r\n');
 	urls = urls.map(function(url){
