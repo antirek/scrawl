@@ -51,3 +51,6 @@ config/scrawl.json
 }
 `````
 
+Screenshots
+-----------
+http://antirek.github.io/scrawl
