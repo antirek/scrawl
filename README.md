@@ -12,19 +12,20 @@ Requirements
 Install PhantomJS & CasperJS & bower
 ------------------------------------
 
-    npm install -g phantomjs
-    npm install -g casperjs
-    npm install -g bower
+    $ npm install -g phantomjs
+    $ npm install -g casperjs
+    $ npm install -g bower
 
 
 Install
 -------
 
-    git clone https://github.com/antirek/scrawl.git
-    cd scrawl
-    npm install
-    bower install
-    npm start
+    $ git clone https://github.com/antirek/scrawl.git
+    $ cd scrawl
+    $ npm install
+    $ bower install
+    $ npm start
+    .. and visit http://localhost:3000/
 
 config/scrawl.json
 ------------------
