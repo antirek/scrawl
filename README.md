@@ -5,15 +5,17 @@ web capture crawler
 Requirements
 ------------
 
-Ubuntu or other Debian-like OS
+- Ubuntu or other Debian-like OS
+- latest version node.js
 
 
-Pre-install
------------
+Install PhantomJS & CasperJS & bower
+------------------------------------
 
+    npm install -g phantomjs
+    npm install -g casperjs
+    npm install -g bower
 
-1. check latest version node.js
-2. install PhantomJS & CasperJS
 
 Install
 -------
@@ -21,6 +23,7 @@ Install
     git clone https://github.com/antirek/scrawl.git
     cd scrawl
     npm install
+    bower install
     npm start
 
 
