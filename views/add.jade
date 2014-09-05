@@ -8,13 +8,13 @@ block content
 
   h3 Add URLs
 
-  
-  form#formAddUrls.form-horizontal(method='post', action='/add')
-    .form-group
-      textarea#urls.form-control(rows="8", name='urls')
-        | http://www.news2.ru
-        | http://www.google.com
-   
-    .form-group
-      
-      a#submit.btn.btn-primary Submit
+  .row
+    .col-md-10.col-md-offset-1
+
+      form#formAddUrls.form-horizontal(method='post', action='/add', role='form')
+        .form-group One url per line
+          textarea#urls.form-control(rows="8", name='urls', placeholder="Examples:\nhttp://www.host.com\nhost.com\n192.168.100.100")
+
+        .form-group
+          
+          a#submit.btn.btn-primary Submit

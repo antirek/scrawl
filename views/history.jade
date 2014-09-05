@@ -10,9 +10,12 @@ block scripts
 
 block content
 
-  h3 History
+  .row
+    .col-md-10
+      h3 History
+    .col-md-2.pull-right
+      a.btn.btn-default(href='/history/clear') Clear
 
-  a.btn.btn-default(href='/history/clear') Clear
 
   table.table.table-hover.table-condensed.table-bordered
     thead
