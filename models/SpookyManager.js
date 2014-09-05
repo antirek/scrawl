@@ -1,6 +1,4 @@
 var spookyRunner = require('./SpookyRunner');
-var db = require('diskdb');
-
 
 var SpookyManager = function(){
 

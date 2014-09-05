@@ -25,6 +25,11 @@ router.get('/add', function(req, res) {
 });
 
 
+router.get('/settings', function(req, res) {
+	res.render('settings', {});
+});
+
+
 router.get('/history', function(req, res) {
 	if(DB.urls){
 		var urls = DB.urls.find();

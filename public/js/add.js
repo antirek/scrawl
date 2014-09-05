@@ -1,7 +1,11 @@
 
-$('#submit').click(function(){
-	prepare();
-	$('#formAddUrls').submit();
+$(function() {
+	
+	$('#submit').click(function(){
+		prepare();
+		$('#formAddUrls').submit();
+	});
+
 });
 
 

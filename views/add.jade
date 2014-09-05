@@ -1,5 +1,9 @@
 extends layout
 
+block scripts
+  script(src='/js/add.js')
+
+
 block content
 
   h3 Add URLs
@@ -14,5 +18,3 @@ block content
     .form-group
       
       a#submit.btn.btn-primary Submit
-    
-  script(src='/js/add.js')
