@@ -1,6 +1,7 @@
 var Spooky = require('spooky');
 var EventEmitter = require('events').EventEmitter;
 var md5 = require('MD5');
+var dateFormat = require('dateformat');
 var nconf = require('nconf');
 nconf.file({file: 'config/scrawl.json'});
 
@@ -120,7 +121,7 @@ var SpookyRunner = function() {
         spooky.on('end', function(status){
             running = false;
             var m = {};
-            result.date = new Date();
+            result.date = dateFormat(new Date(),"yyyy-mm-dd HH:MM:ss");
             m.status = status;
             m.result = result;
             emit('end', m)

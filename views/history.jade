@@ -34,7 +34,7 @@ block content
             td= item.date
             td= item.statusCode 
             td
-              a(href= item.url)
+              a(href= item.url, target='_blank')
                 = item.url
             td
             td
@@ -45,10 +45,10 @@ block content
             td= item.date
             td= item.statusCode 
             td
-              a(href= item.url)
+              a(href= item.url, target='_blank')
                 = item.url
             td
-              a(href= item.currentUrl)
+              a(href= item.currentUrl, target='_blank')
                 = item.short_title
             td
               a(href='images/#{item.filename}',data-lightbox="1",data-title="#{item.title}") View
