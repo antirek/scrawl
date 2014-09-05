@@ -1,5 +1,9 @@
 extends layout
 
+block meta
+  if isRunning
+    meta(http-equiv='refresh', content='10')
+
 block scripts
   script(src='/components/lightbox/js/lightbox.js')
   link(href='/components/lightbox/css/lightbox.css', rel='stylesheet')

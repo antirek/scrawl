@@ -1,12 +1,16 @@
 extends layout
 
+block meta
+  if isRunning
+    meta(http-equiv='refresh', content='10')
+
 block content
 
 
   h3 Status
 
   h4 isRunning 
-    = status
+    = isRunning
   h4 Length 
     = length  
     

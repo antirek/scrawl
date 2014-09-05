@@ -16,7 +16,7 @@ var SpookyRunner = function() {
     var emitter = new EventEmitter();
     var running = false;
 
-    var isBusy = function(){
+    var isRunning = function(){
         return running;
     }
     
@@ -136,7 +136,7 @@ var SpookyRunner = function() {
     return {
         run: run,
         on: on,
-        isBusy: isBusy,    
+        isRunning: isRunning,    
     }
 }
 

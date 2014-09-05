@@ -16,7 +16,7 @@ var SpookyManager = function(){
 	}
 
 	var tryStart = function(){
-		if(!runner.isBusy()){
+		if(!runner.isRunning()){
 			var url = queue.shift();
 			if(url){
 				runner.run(url);
@@ -24,8 +24,8 @@ var SpookyManager = function(){
 		}
 	}
 
-	var isBusy = function(){
-		return runner.isBusy();
+	var isRunning = function(){
+		return runner.isRunning();
 	}
 
 	var queueLength = function(){
@@ -39,7 +39,7 @@ var SpookyManager = function(){
 
 	return {
 		addURL: addURL,
-		isBusy: isBusy,
+		isRunning: isRunning,
 		queueLength: queueLength,
 		setDB: setDB,
 	}

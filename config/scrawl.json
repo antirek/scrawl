@@ -10,5 +10,5 @@
   	"width": 1200,
   	"height": 600
   },
-  "captureAsViewport": false
+  "captureAsViewport": true
 }

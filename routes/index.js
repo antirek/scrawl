@@ -19,7 +19,7 @@ spookyManager.setDB(DB);
 
 router.get('/', function(req, res) {
 	res.render('status', {
-		status: spookyManager.isBusy(),
+		isRunning: spookyManager.isRunning(),
 		length: spookyManager.queueLength(),
 	});
 });
@@ -56,7 +56,10 @@ router.get('/history', function(req, res) {
 		urls = urls.reverse();
 	}
 
-	res.render('history', {urls: urls});
+	res.render('history', {
+		urls: urls,
+		isRunning: spookyManager.isRunning()
+	});
 });
 
 
