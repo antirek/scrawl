@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('diskdb');
 var S = require('string');
 var fs = require('fs');
+var jsoncsv = require('express-json-csv')(express);
 
 var nconf = require('nconf');
 nconf.file({file: 'config/scrawl.json'});
@@ -83,6 +84,17 @@ router.get('/history/clear', function(req, res) {
 	});
 
 	res.redirect('/history');
+});
+
+
+router.get('/history/export', function(req, res) {
+	var urls = DB.urls.find();
+	urls = urls.reverse();
+	res.csv(urls,
+    	{ fields:
+    		['date', 'statusCode', 'url', 'title']
+    	}
+    );
 });
 
 

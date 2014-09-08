@@ -18,6 +18,7 @@
     "MD5": "~1.2.1",
     "string": "~2.0.0",
     "nconf": "~0.6.9",
-    "dateformat": "~1.0.8-1.2.3"
+    "dateformat": "~1.0.8-1.2.3",
+    "express-json-csv": "0.0.3"
   }
 }
